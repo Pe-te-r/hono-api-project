@@ -1,8 +1,3 @@
-```
-npm install
-npm run dev
-```
+A hono api application.
 
-```
-open http://localhost:3000
-```
+It runs on localhost.

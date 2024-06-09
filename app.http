@@ -1,0 +1,466 @@
+### users crud operations
+
+### Get all users
+GET http://localhost:3000/user/listUsers 
+### Get one user
+GET http://localhost:3000/user/getUser/8
+### Delete one user
+DELETE http://localhost:3000/user/deleteUser/8
+### create one user
+POST http://localhost:3000/user/createUser
+Content-Type: application/json
+
+  {
+    "id": 8,
+    "name": "john",
+    "contact_phone": "0768543269",
+    "phone_verified": true,
+    "email": "shakirah@gmail.com",
+    "email_verified": true,
+    "confirmation_code": 33333,
+    "password": "8526",
+    "created_at": "2020-12-03",
+    "updated_at": "2020-12-02"
+  }
+
+### update user
+PUT http://localhost:3000/user/updateUser/9
+Content-Type: application/json
+
+  {
+    "name": "shakirah",
+    "contact_phone": "0768543269",
+    "phone_verified": true,
+    "email": "shakirah@gmail.com",
+    "email_verified": true,
+    "confirmation_code": 33333,
+    "password": "8526",
+    "created_at": "2020-12-03",
+    "updated_at": "2020-12-02"
+  }
+
+
+### state crude operations
+
+### Get all states
+GET http://localhost:3000/state/listStates
+### Get one state
+GET http://localhost:3000/state/oneState/1
+### Delete one state
+DELETE http://localhost:3000/state/deleteState/1
+### create one state
+POST http://localhost:3000/state/createState
+Content-Type: application/json
+
+  {
+    "name": "karatina",
+    "code": "KR"
+  }
+
+### update state
+PUT http://localhost:3000/state/updateState/1
+Content-Type: application/json
+
+  {
+    "name": "Nyeri",
+    "code": "NY"
+  }
+
+
+
+
+### city crude operations
+
+### Get all cities
+GET http://localhost:3000/city/listCities
+### Get one city
+GET http://localhost:3000/city/getCity/3
+### Delete one city
+DELETE http://localhost:3000/city/deleteCity/17
+### create one city
+POST http://localhost:3000/city/createCity
+Content-Type: application/json
+
+  {
+    "state_id": 2,
+    "name": "Kigali"
+  }
+
+
+### updateCity
+PUT http://localhost:3000/city/updateCity/3
+Content-Type: application/json
+  {
+    "state_id": 3,
+    "name": "Kigali"
+  }
+
+
+### restaurants crud operations
+
+### Get all restaurants
+GET http://localhost:3000/restaurant/listRestaurants
+### Get one restaurant
+GET http://localhost:3000/restaurant/getRestaurant/4
+### Delete one restaurant
+DELETE  http://localhost:3000/restaurant/deleteRestaurant/14
+### create one restaurant
+POST http://localhost:3000/restaurant/createRestaurant
+Content-Type: application/json
+
+  {
+    "id": 14,
+    "name": "The Steakhouse",
+    "street_address": "1011 Maple Drive",
+    "zip_code": "34567",
+    "city_id": 3,
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### update restaurant
+PUT http://localhost:3000/restaurant/updateRestaurant/14
+Content-Type: application/json
+
+  {
+    "name": "The Steakhouse",
+    "street_address": "1011 Maple Drive",
+    "zip_code": "34567",
+    "city_id": 3,
+    "created_at": "2024-06-09",
+    "updated_at": "2025-06-09"
+  }
+
+### driver crude operations
+
+### Get all drivers
+GET http://localhost:3000/driver/listDrivers
+### Get one driver
+GET http://localhost:3000/driver/getDriver/1
+### Delete one driver
+DELETE http://localhost:3000/driver/deleteDriver/1
+### create one driver
+POST http://localhost:3000/driver/createDriver
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "car_make": "subaru",
+    "car_model": "subaru foresta",
+    "car_year": 2015,
+    "user_id": 1,
+    "online": true,
+    "delivering": false,
+    "created_at": null,
+    "updated_at": null
+  }
+###
+PUT http://localhost:3000/driver/updateDriver/1
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "car_make": "subaru",
+    "car_model": "subaru foresta",
+    "car_year": 2015,
+    "user_id": 1,
+    "online": true,
+    "delivering": true,
+    "created_at": null,
+    "updated_at": null
+  }
+###address crud operations
+
+### Get all addresses
+GET http://localhost:3000/address/listAddresses
+### Get one address
+GET http://localhost:3000/address/getAddress/3
+### Delete one address
+DELETE http://localhost:3000/address/deleteAddress/3
+### create one address
+POST http://localhost:3000/address/createAddress
+Content-Type: application/json
+
+  {
+    "id": 3,
+    "street_address_1": "789 Oak Ave",
+    "street_address_2": null,
+    "zip_code": "34567",
+    "delivery_instructions": null,
+    "user_id": 2,
+    "city_id": 11,
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### update address
+PUT http://localhost:3000/address/updateAddress/3
+Content-Type: application/json
+
+  {
+
+    "street_address_1": "789 Oak Ave",
+    "street_address_2": "499 kimathi street",
+    "zip_code": "34567",
+    "delivery_instructions": null,
+    "user_id": 2,
+    "city_id": 11,
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### category crude operations
+
+### Get all categories
+GET http://localhost:3000/category/listCategories
+### Get one category
+GET http://localhost:3000/category/getCategory/13
+### Delete one category
+DELETE http://localhost:3000/category/deleteCategory/1
+### create one category
+POST http://localhost:3000/category/createCategory
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "Appetizers"
+  }
+### update category
+PUT http://localhost:3000/category/updateCategory/2
+Content-Type: application/json
+
+  {
+    "name": "BreakFast"
+  }
+### comments crude operations
+
+### Get all comments
+GET http://localhost:3000/comment/listComments
+### Get one comment
+GET http://localhost:3000/comment/getComment/3
+### Delete one comment
+DELETE http://localhost:3000/comment/deleteComment/3
+### create one comment
+POST http://localhost:3000/comment/createComment
+Content-Type: application/json
+
+  {
+    "id": 3,
+    "order_id": 18,
+    "user_id": 5,
+    "comment_text": "The pizza was cold when it arrived. Disappointed with the quality.",
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### update comment
+PUT http://localhost:3000/comment/updateComment/3
+Content-Type: application/json
+
+  {
+    "id": 3,
+    "order_id": 18,
+    "user_id": 5,
+    "comment_text": "The pizza was cold when it arrived. Disappointed with the quality.",
+    "created_at": "2024-06-09",
+    "updated_at": "2025-06-09"
+  }
+### meunu item crud operations
+
+### Get all menus
+GET http://localhost:3000/menu/listMenuItems
+### Get one menu
+GET http://localhost:3000/menu/getMenu/1
+### Delete one menu
+DELETE http://localhost:3000/menu/deleteMenu/1
+### create one menu
+POST http://localhost:3000/menu/createMenu
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "Spaghetti Carbonara",
+    "restaurant_id": 5,
+    "category_id": 2,
+    "description": "Classic Italian pasta dish made with eggs, cheese, pancetta, and black pepper.",
+    "ingredients": "Spaghetti, eggs, pancetta, Parmesan cheese, black pepper",
+    "price": "12.99",
+    "active": true,
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### update menu
+PUT http://localhost:3000/menu/updateMenu/1
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "Spaghetti Carbonara",
+    "restaurant_id": 5,
+    "category_id": 2,
+    "description": "Classic Italian pasta dish made with eggs, cheese, pancetta, and black pepper.",
+    "ingredients": "Spaghetti, eggs, pancetta, Parmesan cheese, black pepper",
+    "price": "12.99",
+    "active": true,
+    "created_at": "2024-06-09",
+    "updated_at": "2025-06-09"
+  }
+### order menu cruds operation
+
+### Get all orders
+GET http://localhost:3000/order/list
+### Get one order
+GET http://localhost:3000/order/get/1
+### Delete one order
+DELETE http://localhost:3000/order/delete/18
+### create one order
+POST http://localhost:3000/order/create
+Content-Type: application/json
+
+  {
+    "id": 18,
+    "restaurant_id": 5,
+    "estimated_delivery_time": "2024-06-10",
+    "actual_delivery_time": "2024-06-10",
+    "delivery_address_id": 8,
+    "user_id": 5,
+    "driver_id": 7,
+    "price": "42.75",
+    "discount": "2.50",
+    "final_price": "40.25",
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### update order
+PUT http://localhost:3000/order/update/18
+Content-Type: application/json
+
+  {
+
+    "restaurant_id": 5,
+    "estimated_delivery_time": "2024-06-10",
+    "actual_delivery_time": "2024-06-10",
+    "delivery_address_id": 8,
+    "user_id": 5,
+    "driver_id": 7,
+    "price": "42.75",
+    "discount": "2.50",
+    "final_price": "40.25",
+    "created_at": "2024-06-09",
+    "updated_at": "2025-06-09"
+  }
+  
+
+### order status crude operations
+
+### Get all order statuses
+GET http://localhost:3000/orderStatus/list
+### Get one order status
+GET http://localhost:3000/orderStatus/get/1
+### Delete one order status
+DELETE http://localhost:3000/orderStatus/delete/68
+### create one order status
+POST http://localhost:3000/orderStatus/create
+Content-Type: application/json
+
+   {
+    "id": 68,
+    "order_id": 30,
+    "status_id": 1,
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### update order status
+PUT http://localhost:3000/orderStatus/update/68
+Content-Type: application/json
+
+  {
+    "id": 68,
+    "order_id": 30,
+    "status_id": 1,
+    "created_at": "2024-06-09",
+    "updated_at": "2025-06-09"
+  }
+
+### restaurant owner crude operations
+
+### Get all restaurant owners
+GET http://localhost:3000/restaurantOwner/list
+### Get one restaurant owner
+GET http://localhost:3000/restaurantOwner/get/15
+### Delete one restaurant owner
+DELETE http://localhost:3000/restaurantOwner/delete/15
+### create one restaurant owner
+POST http://localhost:3000/restaurantOwner/create
+Content-Type: application/json
+  
+  {
+    "id": 15,
+    "restaurant_id": 7,
+    "owner_id": 9
+  }
+### update restaurant owner
+PUT http://localhost:3000/restaurantOwner/update/15
+Content-Type: application/json
+
+  {
+    "id": 15,
+    "restaurant_id": 7,
+    "owner_id": 10
+  }
+
+### status catalog crude operations
+
+### Get all status catalogs
+GET http://localhost:3000/statusCatalog/list
+### Get one status catalog
+GET http://localhost:3000/statusCatalog/get/1
+### Delete one status catalog
+DELETE http://localhost:3000/statusCatalog/delete/1
+### create one status catalog
+POST http://localhost:3000/statusCatalog/create
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "Pending",
+    "order_status": "Waiting for confirmation"
+  }
+### update status catalog
+PUT http://localhost:3000/statusCatalog/update/1
+Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "pending",
+    "order_status": "Waiting for confirmation"
+  }
+
+### order menu cruds operation
+
+### Get all orders
+GET http://localhost:3000/orderMenu/list
+### Get one order
+GET http://localhost:3000/orderMenu/get/14
+### Delete one order
+DELETE http://localhost:3000/orderMenu/delete/14
+### create one order
+POST http://localhost:3000/orderMenu/create
+Content-Type: application/json
+
+  {
+    "id": 14,
+    "order_id": 29,
+    "menu_item_id": 12,
+    "quantity": 1,
+    "created_at": "2024-06-09",
+    "updated_at": "2024-06-09"
+  }
+### update order
+PUT http://localhost:3000/orderMenu/update/14
+Content-Type: application/json
+
+  {
+    "id": 14,
+    "order_id": 29,
+    "menu_item_id": 12,
+    "quantity": 1,
+    "created_at": "2024-06-09",
+    "updated_at": "2025-06-09"
+  }
