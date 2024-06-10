@@ -19,7 +19,7 @@ export const deleteOne = async(id: number)=>{
     return  `${message} deleted`
 }
 
-export const insert = async (data: RestaurantInsert) => {
+export const insert = async (data: any) => {
     await db.insert(restaurantOwnerTable).values(data)
     return `${message} created successfully`;
 }
