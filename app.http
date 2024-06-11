@@ -1,36 +1,34 @@
 ### users crud operations
 
 ### Get all users
-GET http://localhost:3000/user/listUsers 
+GET http://localhost:3000/user/users 
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoidXNlciIsImVtYWlsIjoic2hha2lyYWgxOEBnbWFpbC5jb20iLCJleHAiOjE3MTgxMTE1NDl9.LM0ydzhDMg48bvn7ApVK5Zb8jokVlmmz6r2BbF34SOE
 ###
-GET http://localhost:3000/user/listUsers 
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxMTE1MTZ9.kwyn5ahhfz-mYw3pBO3BA0Rp-zkFzDgyY0vZi_Bdvdc
+GET http://localhost:3000/user/users 
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxMTE1MTZ9.kwyn5ahhfz-mYw3pBO3BA0Rp-zkFzDgyY0vZi_Bdvdc
 ### Get one user
-GET http://localhost:3000/user/getUser/1
+GET http://localhost:3000/user/users/1
 ### Delete one user
-DELETE http://localhost:3000/user/deleteUser/4
+DELETE http://localhost:3000/user/users/4
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxMTMwMTB9.j_xen5bzdEiJPa4-ZyH6DXP134Ae4BKgVUqapX5Vv6w
 ### create one user
-POST http://localhost:3000/user/createUser
+POST http://localhost:3000/user/users
 Content-Type: application/json
 
   {
-    "name": "john",
-    "contact_phone": "0768543269",
-    "phone_verified": true,
-    "email": "phantom8526@duck.com",
+    "name": "peter",
+    "contact_phone": "0748200233",
+    "phone_verified":true,
+    "email": "shakirah18@gmail.com",
     "email_verified": true,
-    "confirmation_code": 33333,
-    "password": "phantom",
-    "role": "user",
-    "password":"12345",
-    "created_at": "2020-12-03",
-    "updated_at": "2020-12-02"
+    "confirmation_code":"123",
+    "password": "12345",
+    "role": "admin",
+    "created_at": "2016-12-05"
   }
 
 ### update user
-PUT http://localhost:3000/user/updateUser/2
+PUT   http://localhost:3000/user/users
 Content-Type: application/json
 
   {
@@ -41,8 +39,8 @@ Content-Type: application/json
     "email_verified": true,
     "confirmation_code": 33333,
     "password": "8526",
-    "created_at": "2020-12-03",
-    "updated_at": "2020-12-02"
+    "created_at": 2020-12-03,
+    "updated_at": 2020-12-02
   }
 ###login
 POST http://localhost:3000/user/login
@@ -58,7 +56,7 @@ Content-Type: application/json
 
   {
     "email": "phantom8526@duck.com",
-    "password": "phantom"
+    "password": "12345"
   }
 ###logout
 

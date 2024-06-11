@@ -3,7 +3,13 @@ import { eq, sql } from "drizzle-orm";
 import { UserSelect, userInsert, usersTable } from "../drizzle/schema";
 
 export const fetchingAllUsers = async(): Promise<UserSelect[] | null >=>{
-    return await db.query.usersTable.findMany()
+    try{
+        console.log('Fetching all users')
+        return await db.query.usersTable.findMany()
+    }catch(error: any){
+        return error?.message
+    }
+
 }
 
 export const fetchOneUser = async(id: number): Promise<UserSelect | undefined>=>{
@@ -18,8 +24,12 @@ export const deleteUser = async(id: number)=>{
 }
 
 export const insertUser = async (user: userInsert) => {
-    await db.insert(usersTable).values(user)
-    return "User created successfully";
+    try {
+        await db.insert(usersTable).values(user)
+        return "User created successfully";
+    } catch (error: any) {
+        return error?.message        
+    }
 }
 export const updateUser = async (id: number, user: userInsert) => {
     await db.update(usersTable).set(user).where(eq(usersTable.id, id))
@@ -27,7 +37,8 @@ export const updateUser = async (id: number, user: userInsert) => {
 }
 export const loginService = async (user: any) => {
     try {
-        const result= await db.query.usersTable.findFirst({
+        
+        return await db.query.usersTable.findFirst({
             columns: {
                 name: true,
                 email: true,
@@ -38,8 +49,8 @@ export const loginService = async (user: any) => {
             where: sql`${usersTable.email} = ${user.email}`
         });
 
-        console.log('Query Result:', result);
-        return result;
+        // console.log('Query Result:', result);
+        // return result;
     } catch (error: any) {
         console.error('Database query error:', error?.message);
     }

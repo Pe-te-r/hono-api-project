@@ -12,6 +12,7 @@ export const login=async(c: Context)=>{
     const user =await c.req.json();
 
     const user_exit = await loginService(user)
+    console.log(user_exit);
     if (user_exit===undefined || user_exit=== null) return c.json({"error":"does not exist"})
     const userMatch=await bcrypt.compare(user.password, user_exit.password as string)
     if(! userMatch ) return c.json({"error":"wrong password"})
@@ -47,7 +48,7 @@ export const listUsers = async (c: Context) => {
 
 export const getOneUser = async (c: Context) => {
   try {
-    const id = c.req.param("name");
+    const id = c.req.param("ip");
     const user = await fetchOneUser(Number(id));
     if(user==null) return c.json({"msg": "user not found"});
     return c.json(user, 200);
@@ -84,13 +85,13 @@ export const createUser = async (c: Context) => {
   try {
     const user = await c.req.json();
     const password= user.password
-    // console.log(password)
     const hashed_password = await bcrypt.hash(password,10);
     user.password = hashed_password
     const result = await insertUser(user);
     return c.json({ msg: result}, 200);
+
   } catch (error: any) {
-    // console.log(error);
+
     return c.json({ "error": error?.message }, 500);
   }
 }

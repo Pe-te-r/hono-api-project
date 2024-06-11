@@ -1,22 +1,28 @@
 import { Hono } from "hono";
 import {deleteOneUser,createUser, getOneUser, listUsers, updateUserData,login } from "./user.controler";
 import { userRoleAuth } from "../middleAuth/middleAuth.users";
+import { zValidator } from "@hono/zod-validator";
+import { userSchema } from "../zvalidators";
 
 export const userRoute = new Hono()
 
 // getting all users
-userRoute.get('/listUsers',userRoleAuth,listUsers)
+userRoute.get('/users',listUsers)
 // getting one user
-userRoute.get("/getUser/:name",getOneUser)
+userRoute.get("/users/:id",getOneUser)
 
 // deleting a user
-userRoute.delete("/deleteUser/:id",userRoleAuth,deleteOneUser)
+userRoute.delete("/users/:id",userRoleAuth,deleteOneUser)
 
 // updating a user
-userRoute.put("/updateUser/:id",updateUserData)
+userRoute.put("/users/:id",updateUserData)
 
 // creating a new user
-userRoute.post("/createUser",createUser)
+userRoute.post("/users", zValidator('json', userSchema, (result, c) => {
+    if (!result.success) {
+        return c.json(result.error, 400)
+    }
+}),createUser)
 
 
 // login to the database
