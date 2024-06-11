@@ -1,5 +1,5 @@
 import db from "../drizzle/db";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { UserSelect, userInsert, usersTable } from "../drizzle/schema";
 
 export const fetchingAllUsers = async(): Promise<UserSelect[] | null >=>{
@@ -24,4 +24,23 @@ export const insertUser = async (user: userInsert) => {
 export const updateUser = async (id: number, user: userInsert) => {
     await db.update(usersTable).set(user).where(eq(usersTable.id, id))
     return "User updated successfully";
+}
+export const loginService = async (user: any) => {
+    try {
+        const result= await db.query.usersTable.findFirst({
+            columns: {
+                name: true,
+                email: true,
+                role: true,
+                password: true,
+                id: true
+            },
+            where: sql`${usersTable.email} = ${user.email}`
+        });
+
+        console.log('Query Result:', result);
+        return result;
+    } catch (error: any) {
+        console.error('Database query error:', error?.message);
+    }
 }

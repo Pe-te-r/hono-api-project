@@ -2,42 +2,65 @@
 
 ### Get all users
 GET http://localhost:3000/user/listUsers 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoidXNlciIsImVtYWlsIjoic2hha2lyYWgxOEBnbWFpbC5jb20iLCJleHAiOjE3MTgxMTE1NDl9.LM0ydzhDMg48bvn7ApVK5Zb8jokVlmmz6r2BbF34SOE
+###
+GET http://localhost:3000/user/listUsers 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxMTE1MTZ9.kwyn5ahhfz-mYw3pBO3BA0Rp-zkFzDgyY0vZi_Bdvdc
 ### Get one user
-GET http://localhost:3000/user/getUser/8
+GET http://localhost:3000/user/getUser/1
 ### Delete one user
-DELETE http://localhost:3000/user/deleteUser/8
+DELETE http://localhost:3000/user/deleteUser/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxMTMwMTB9.j_xen5bzdEiJPa4-ZyH6DXP134Ae4BKgVUqapX5Vv6w
 ### create one user
 POST http://localhost:3000/user/createUser
 Content-Type: application/json
 
   {
-    "id": 8,
     "name": "john",
     "contact_phone": "0768543269",
     "phone_verified": true,
-    "email": "shakirah@gmail.com",
+    "email": "phantom8526@duck.com",
     "email_verified": true,
     "confirmation_code": 33333,
-    "password": "8526",
+    "password": "phantom",
+    "role": "user",
+    "password":"12345",
     "created_at": "2020-12-03",
     "updated_at": "2020-12-02"
   }
 
 ### update user
-PUT http://localhost:3000/user/updateUser/9
+PUT http://localhost:3000/user/updateUser/2
 Content-Type: application/json
 
   {
     "name": "shakirah",
     "contact_phone": "0768543269",
     "phone_verified": true,
-    "email": "shakirah@gmail.com",
+    "email": "shakirah18@gmail.com",
     "email_verified": true,
     "confirmation_code": 33333,
     "password": "8526",
     "created_at": "2020-12-03",
     "updated_at": "2020-12-02"
   }
+###login
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+  {
+    "email": "shakirah18@gmail.com",
+    "password": "12345"
+  }
+###login
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+  {
+    "email": "phantom8526@duck.com",
+    "password": "phantom"
+  }
+###logout
 
 
 ### state crude operations
@@ -90,6 +113,7 @@ Content-Type: application/json
 ### updateCity
 PUT http://localhost:3000/city/updateCity/3
 Content-Type: application/json
+  
   {
     "state_id": 3,
     "name": "Kigali"
@@ -463,4 +487,14 @@ Content-Type: application/json
     "quantity": 1,
     "created_at": "2024-06-09",
     "updated_at": "2025-06-09"
+  }
+
+
+### check login
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+  {
+    "email": "shakirah@gmail.com",
+    "password": "12345"
   }

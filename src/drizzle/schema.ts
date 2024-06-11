@@ -1,6 +1,7 @@
-import { pgTable, date, integer, text, serial, decimal, boolean, varchar } from 'drizzle-orm/pg-core';
+import { pgTable, date, integer, text, serial, decimal, boolean, varchar, pgEnum } from 'drizzle-orm/pg-core';
 import { relations } from "drizzle-orm";
 
+export const roleEnum=pgEnum("rule",["admin","user"])
 // users table no. 1
 export const usersTable = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -10,7 +11,8 @@ export const usersTable = pgTable("users", {
   email: varchar("email", { length: 100 }).notNull(),
   email_verified: boolean("email_verified"),
   confirmation_code: varchar("confirmation_code", { length: 10 }),
-  password: varchar("password", { length: 100 }).notNull(),
+  password: varchar('password'),
+  role: roleEnum("role").default("user"),
   created_at: date("created_at"),
   updated_at: date("updated_at")
 });
@@ -145,9 +147,21 @@ export const orderMenuItemTable = pgTable('order_menu_item', {
   updated_at: date('updated_at'),
 });
 
+export const authTable=pgTable("auth_table",{
+  username: varchar("username",{length: 40}).notNull(),
+  password: varchar("password", { length: 100 }).notNull(),
+  userId: integer("user_id").notNull().references(() => usersTable.id, { onDelete: 'cascade' })
+});
 
 // Relationships
-export const usersRelations = relations(usersTable, ({ many }) => ({
+
+
+export const authRelations = relations(authTable, ({ one }) => ({
+  user: one(usersTable, { fields: [authTable.userId], references: [usersTable.id] }),
+}));
+
+export const usersRelations = relations(usersTable, ({ many,one }) => ({
+  auth: one(authTable, { fields: [usersTable.id], references: [authTable.userId] }),
   addresses: many(addressTable),
   drivers: many(driversTable),
   orders: many(ordersTable),
