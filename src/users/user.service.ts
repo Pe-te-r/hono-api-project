@@ -2,9 +2,18 @@ import db from "../drizzle/db";
 import { eq, sql } from "drizzle-orm";
 import { UserSelect, userInsert, usersTable } from "../drizzle/schema";
 
-export const fetchingAllUsers = async(): Promise<UserSelect[] | null >=>{
+type FetchingAllUsersOptions = {
+    limit?: number;
+  };
+
+export const fetchingAllUsers = async(option?: FetchingAllUsersOptions): Promise<UserSelect[] | null >=>{
     try{
-        console.log('Fetching all users')
+        const limit = Number(option?.limit)
+        if(limit> 0){
+            return await db.query.usersTable.findMany({
+                limit: limit
+            })
+        }
         return await db.query.usersTable.findMany()
     }catch(error: any){
         return error?.message
@@ -14,7 +23,14 @@ export const fetchingAllUsers = async(): Promise<UserSelect[] | null >=>{
 
 export const fetchOneUser = async(id: number): Promise<UserSelect | undefined>=>{
     return await db.query.usersTable.findFirst({
-        where:eq(usersTable.id,id)
+        where:eq(usersTable.id,id),
+        with:{
+            restaurantOwners:true,
+            orders:true,
+            comments:true,
+            drivers:true,
+            addresses:true
+        }
     })
 }
 

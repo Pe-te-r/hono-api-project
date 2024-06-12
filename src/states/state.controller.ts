@@ -1,8 +1,10 @@
 import { Context } from "hono";
 import { createStateData, deleteState, getState, getStates, updateStateData } from "./state.service";
 
-export const getAllStates= async(c: Context)=>{
-   const states = await getStates()
+export const getAllStates= async(c: Context)=>{ 
+    const limitParam = c.req.query('limit');
+    const limit = limitParam ? parseInt(limitParam,10): undefined;
+   const states = await getStates(limit? {limit}: undefined)
    return c.json(states,200)
 }
 

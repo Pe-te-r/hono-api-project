@@ -1,15 +1,30 @@
 import { eq } from "drizzle-orm"
 import db from "../drizzle/db"
 import { StateInsert, StateSelect, stateTable } from "../drizzle/schema"
-import { promises } from "readline"
 
-export const getStates = async(): Promise<StateSelect[] | null>=>{
+type FetchingAll = {
+    limit?: number;
+  };
+
+export const getStates = async(option?: FetchingAll) : Promise<StateSelect[] | null>=>{
+    const limit=Number(option?.limit)
+    if(limit>0){
+        return await db.query.stateTable.findMany({
+            limit: limit
+        })
+    }
     return await db.query.stateTable.findMany()
 }
 
 export const getState = async(id: number): Promise<StateSelect | undefined>=>{
     return await db.query.stateTable.findFirst(
-        {where: eq(stateTable.id,id)}
+        {
+            where: eq(stateTable.id,id),
+            with:{
+                cities:true,
+            }
+
+        }
     )    
 }
 
@@ -17,7 +32,6 @@ export const deleteState = async(id: number)=>{
     await db.delete(stateTable).where(eq(stateTable.id,id))
     return "state deleted"
 }
-
 export const updateStateData = async (id: number, state: StateInsert) => {
     await db.update(stateTable).set(state).where(eq(stateTable.id, id))
     return "state updated successfully";

@@ -5,11 +5,12 @@ import { deleteOne, fetchOne, fetchingAll, insert, update } from "./status_catal
 
 export const listAll= async (c: Context) => {
   try {
-    const data= await fetchingAll();
+    const limitParam = c.req.query('limit');
+    const limit = limitParam ? parseInt(limitParam,10): undefined;
+    const data= await fetchingAll(limit? {limit}: undefined);
     return c.json(data, 200);
-  } catch (e) {
-    console.log(e);
-    return c.json({ error: e }, 500);
+  } catch (error: any) {
+    return c.json({ error: error?.message }, 500);
   }
 };
 

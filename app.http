@@ -1,16 +1,15 @@
-### users crud operations
+#### users crud operations
 
-### Get all users
-GET http://localhost:3000/user/users 
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoidXNlciIsImVtYWlsIjoic2hha2lyYWgxOEBnbWFpbC5jb20iLCJleHAiOjE3MTgxMTE1NDl9.LM0ydzhDMg48bvn7ApVK5Zb8jokVlmmz6r2BbF34SOE
+GET http://localhost:3000/user/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
 ###
-GET http://localhost:3000/user/users 
-# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxMTE1MTZ9.kwyn5ahhfz-mYw3pBO3BA0Rp-zkFzDgyY0vZi_Bdvdc
+GET http://localhost:3000/user/users/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
 ### Get one user
 GET http://localhost:3000/user/users/1
 ### Delete one user
-DELETE http://localhost:3000/user/users/4
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxMTMwMTB9.j_xen5bzdEiJPa4-ZyH6DXP134Ae4BKgVUqapX5Vv6w
+DELETE http://localhost:3000/user/users/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
 ### create one user
 POST http://localhost:3000/user/users
 Content-Type: application/json
@@ -19,54 +18,58 @@ Content-Type: application/json
     "name": "peter",
     "contact_phone": "0748200233",
     "phone_verified":true,
-    "email": "shakirah18@gmail.com",
+    "email": "phantom8526@duck.com",
     "email_verified": true,
     "confirmation_code":"123",
     "password": "12345",
-    "role": "admin",
+    "role": "user",
     "created_at": "2016-12-05"
   }
 
 ### update user
-PUT   http://localhost:3000/user/users
+PUT   http://localhost:3000/user/users/4
 Content-Type: application/json
 
   {
-    "name": "shakirah",
-    "contact_phone": "0768543269",
-    "phone_verified": true,
-    "email": "shakirah18@gmail.com",
-    "email_verified": true,
-    "confirmation_code": 33333,
-    "password": "8526",
-    "created_at": 2020-12-03,
-    "updated_at": 2020-12-02
-  }
-###login
-POST http://localhost:3000/user/login
-Content-Type: application/json
-
-  {
-    "email": "shakirah18@gmail.com",
-    "password": "12345"
-  }
-###login
-POST http://localhost:3000/user/login
-Content-Type: application/json
-
-  {
+    "name": "peter",
+    "contact_phone": "0748200233",
+    "phone_verified":true,
     "email": "phantom8526@duck.com",
+    "email_verified": true,
+    "confirmation_code":"123",
+    "password": "12345",
+    "role": "user",
+    "created_at": "2016-12-05"
+  }
+###login
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+  {
+    "email": "shakirah18@gmail.com",
     "password": "12345"
   }
-###logout
+###login
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+  {
+    "email": "shakirah18@gmail.com",
+    "password": "12345"
+  }
+
+
+
 
 
 ### state crude operations
 
 ### Get all states
 GET http://localhost:3000/state/listStates
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
 ### Get one state
-GET http://localhost:3000/state/oneState/1
+GET http://localhost:3000/state/oneState/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
 ### Delete one state
 DELETE http://localhost:3000/state/deleteState/1
 ### create one state

@@ -8,9 +8,8 @@ export const listCities = async (c: Context) => {
     const states = await fetchingAllCity();
     console.log(states);
     return c.json(states, 200);
-  } catch (e) {
-    console.log(e);
-    return c.json({ error: e }, 500);
+  } catch (error: any) {
+    return c.json({ error: error?.message }, 500);
   }
 };
 

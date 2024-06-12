@@ -38,8 +38,11 @@ app.get('/', (c) => {
 
 const port = 3000
 console.log(`Server is running on port ${port}`)
-
+try{
 serve({
   fetch: app.fetch,
   port
 })
+}catch(error:any){
+  console.log(error?.message)
+}

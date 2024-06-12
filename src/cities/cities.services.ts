@@ -8,7 +8,12 @@ export const fetchingAllCity = async(): Promise<CityInsert[] | any >=>{
 
 export const fetchOneCity = async(id: number): Promise<CityInsert | undefined>=>{
     return await db.query.cityTable.findFirst({
-        where:eq(cityTable.id,id)
+        where:eq(cityTable.id,id),
+        with:{
+            addresses:true,
+            state:true,
+            restaurants:true
+        }
     })
 }
 

@@ -4,7 +4,17 @@ import { StatusCatalogInsert, StatusCatalogSelect, statusCatalogTable } from "..
 
 let message= "status catalog"
 
-export const fetchingAll = async(): Promise<StatusCatalogSelect[] | null >=>{
+type FetchingAll = {
+    limit?: number;
+  };
+
+export const fetchingAll = async(option?: FetchingAll): Promise<StatusCatalogSelect[] | null >=>{
+    const limit =Number(option?.limit)
+    if(limit>0){
+        return await db.query.statusCatalogTable.findMany({limit:limit})
+    }
+
+
     return await db.query.statusCatalogTable.findMany()
 }
 
