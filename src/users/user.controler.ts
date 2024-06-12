@@ -90,11 +90,16 @@ export const logout=async(c: Context)=>{
 export const createUser = async (c: Context) => {
   try {
     const user = await c.req.json();
-    const password= user.password
-    const hashed_password = await bcrypt.hash(password,10);
-    user.password = hashed_password
-    const result = await insertUser(user);
-    return c.json({ msg: result}, 200);
+    const user_exit=await loginService(user)
+    console.log(user)
+    console.log(user_exit)
+    if(user_exit === undefined || user_exit === null){
+      const password= user.password
+      const hashed_password = await bcrypt.hash(password,10);
+      user.password = hashed_password
+      const result = await insertUser(user);
+      return c.json({ msg: result}, 200);
+    }
 
   } catch (error: any) {
 

@@ -1,10 +1,11 @@
 #### users crud operations
 
-GET http://localhost:3000/user/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
+GET http://localhost:3000/user/users?limit=1
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjAzNjU4fQ.F11OXjGs3x7rjXWlKDpxUppwWz4tbOarIYiPJc3tuXs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGV0ZXJ3YWh1MEBnbWFpbC5jb20iLCJleHAiOjE3MTgyMDUxNzF9.z65dlCXoHU5nZPEW7Za2IwZsSgChZFadYZDmG5FVBkA
 ###
 GET http://localhost:3000/user/users/3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjAzNjU4fQ.F11OXjGs3x7rjXWlKDpxUppwWz4tbOarIYiPJc3tuXs
 ### Get one user
 GET http://localhost:3000/user/users/1
 ### Delete one user
@@ -15,10 +16,10 @@ POST http://localhost:3000/user/users
 Content-Type: application/json
 
   {
-    "name": "peter",
+    "name": "mburu",
     "contact_phone": "0748200233",
     "phone_verified":true,
-    "email": "phantom8526@duck.com",
+    "email": "mburupeter8526@gmail.com",
     "email_verified": true,
     "confirmation_code":"123",
     "password": "12345",
@@ -31,10 +32,10 @@ PUT   http://localhost:3000/user/users/4
 Content-Type: application/json
 
   {
-    "name": "peter",
+    "name": "mburu",
     "contact_phone": "0748200233",
     "phone_verified":true,
-    "email": "phantom8526@duck.com",
+    "email": "mburupeter8526@gmail.com",
     "email_verified": true,
     "confirmation_code":"123",
     "password": "12345",
@@ -57,6 +58,16 @@ Content-Type: application/json
     "email": "shakirah18@gmail.com",
     "password": "12345"
   }
+
+####
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+  {
+    "email": "peterwahu0@gmail.com",
+    "password": "12345"
+  }
+
 
 
 
