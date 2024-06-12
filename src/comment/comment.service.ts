@@ -3,12 +3,21 @@ import { eq } from "drizzle-orm";
 import { CommentInsert, CommentSelect, commentsTable } from "../drizzle/schema";
 
 export const fetchingAllComment = async(): Promise<CommentSelect[] | null >=>{
-    return await db.query.commentsTable.findMany()
+    return await db.query.commentsTable.findMany({
+            with:{
+                order:true,
+                user:true
+            }
+    })
 }
 
 export const fetchOneComment = async(id: number): Promise<CommentSelect | undefined>=>{
     return await db.query.commentsTable.findFirst({
-        where:eq(commentsTable.id,id)
+        where:eq(commentsTable.id,id),
+        with:{
+            order:true,
+            user:true
+        }
     })
 }
 

@@ -5,12 +5,21 @@ import { OrderStatusInsert, OrderStatusSelect, ordersStatusTable } from "../driz
 let message= "order status"
 
 export const fetchingAll = async(): Promise<OrderStatusSelect[] | null >=>{
-    return await db.query.ordersStatusTable.findMany()
+    return await db.query.ordersStatusTable.findMany({
+        with:{
+            order:true,
+            status:true
+        }
+    })
 }
 
 export const fetchOne = async(id: number): Promise<OrderStatusSelect | undefined>=>{
     return await db.query.ordersStatusTable.findFirst({
-        where:eq(ordersStatusTable.id,id)
+        where:eq(ordersStatusTable.id,id),
+         with:{
+            order:true,
+            status:true
+        }
     })
 }
 

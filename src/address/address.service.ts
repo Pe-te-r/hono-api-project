@@ -3,12 +3,23 @@ import { eq } from "drizzle-orm";
 import { AddressInsert, AddressSelect, addressTable } from "../drizzle/schema";
 
 export const fetchingAllAddress = async(): Promise<AddressSelect[] | null >=>{
-    return await db.query.addressTable.findMany()
+    return await db.query.addressTable.findMany({
+        with:{
+            city:true,
+            orders:true,
+            user:true
+        }
+    })
 }
 
 export const fetchOneAddress = async(id: number): Promise<AddressSelect | undefined>=>{
     return await db.query.addressTable.findFirst({
-        where:eq(addressTable.id,id)
+        where:eq(addressTable.id,id),
+        with:{
+            city:true,
+            orders:true,
+            user:true
+        }
     })
 }
 

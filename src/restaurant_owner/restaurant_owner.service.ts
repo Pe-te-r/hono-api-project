@@ -5,12 +5,21 @@ import {  RestaurantInsert, RestaurantOwnerSelect, restaurantOwnerTable } from "
 let message= "restaurants owner"
 
 export const fetchingAll = async(): Promise<RestaurantOwnerSelect[] | null >=>{  
-    return await db.query.restaurantOwnerTable.findMany()
+    return await db.query.restaurantOwnerTable.findMany({
+        with:{
+            owner:true,
+            restaurant:true
+        }
+    })
 }
 
 export const fetchOne = async(id: number): Promise<RestaurantOwnerSelect | undefined>=>{
     return await db.query.restaurantOwnerTable.findFirst({
-        where:eq(restaurantOwnerTable.id,id)
+        where:eq(restaurantOwnerTable.id,id),
+        with:{
+            owner:true,
+            restaurant:true
+        }
     })
 }
 

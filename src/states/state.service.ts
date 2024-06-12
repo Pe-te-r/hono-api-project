@@ -10,10 +10,17 @@ export const getStates = async(option?: FetchingAll) : Promise<StateSelect[] | n
     const limit=Number(option?.limit)
     if(limit>0){
         return await db.query.stateTable.findMany({
-            limit: limit
+            limit: limit,
+            with:{
+                cities:true
+            }
         })
     }
-    return await db.query.stateTable.findMany()
+    return await db.query.stateTable.findMany({
+        with:{
+            cities:true
+        }
+    })
 }
 
 export const getState = async(id: number): Promise<StateSelect | undefined>=>{

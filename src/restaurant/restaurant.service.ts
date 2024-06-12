@@ -4,12 +4,25 @@ import { eq } from "drizzle-orm";
 import { RestaurantInsert, RestaurantSelect, restaurantTable } from "../drizzle/schema";
 
 export const fetchingAllRestaurants = async(): Promise< RestaurantSelect[] | any >=>{
-    return await db.query.restaurantTable.findMany()
+    return await db.query.restaurantTable.findMany({
+        with:{
+            city:true,
+            menuItems:true,
+            orders:true,
+            restaurantOwners:true
+        }
+    })
 }
 
 export const fetchOneRestaurantRecord = async(id: number): Promise<RestaurantInsert | undefined>=>{
     return await db.query.restaurantTable.findFirst({
-        where:eq(restaurantTable.id,id)
+        where:eq(restaurantTable.id,id),
+        with:{
+            city:true,
+            menuItems:true,
+            orders:true,
+            restaurantOwners:true
+        }
     })
 }
 

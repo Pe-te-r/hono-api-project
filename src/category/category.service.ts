@@ -4,12 +4,19 @@ import { eq } from "drizzle-orm";
 import { CategoryInsert, CategorySelect, categoryTable } from "../drizzle/schema";
 
 export const fetchingAllCategory = async(): Promise< CategorySelect[] | any >=>{
-    return await db.query.categoryTable.findMany()
+    return await db.query.categoryTable.findMany({
+        with:{
+            menuItems:true
+        }
+    })
 }
 
 export const fetchOneCategoryRecord = async(id: number): Promise<CategorySelect | undefined>=>{
     return await db.query.categoryTable.findFirst({
-        where:eq(categoryTable.id,id)
+        where:eq(categoryTable.id,id),
+        with:{
+            menuItems:true
+        }
     })
 }
 

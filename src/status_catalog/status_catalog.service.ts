@@ -15,12 +15,19 @@ export const fetchingAll = async(option?: FetchingAll): Promise<StatusCatalogSel
     }
 
 
-    return await db.query.statusCatalogTable.findMany()
+    return await db.query.statusCatalogTable.findMany({
+        with:{
+            orderStatus:true
+        }
+    })
 }
 
 export const fetchOne = async(id: number): Promise<StatusCatalogSelect | undefined>=>{
     return await db.query.statusCatalogTable.findFirst({
-        where:eq(statusCatalogTable.id,id)
+        where:eq(statusCatalogTable.id,id),
+        with:{
+            orderStatus:true
+        }
     })
 }
 

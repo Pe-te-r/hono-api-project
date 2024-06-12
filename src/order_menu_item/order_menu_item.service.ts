@@ -5,12 +5,21 @@ import { OrderMenuInsert, OrderMenuSelect, orderMenuItemTable } from "../drizzle
 let message= "order menu"
 
 export const fetchingAll = async(): Promise<OrderMenuSelect[] | null >=>{
-    return await db.query.orderMenuItemTable.findMany()
+    return await db.query.orderMenuItemTable.findMany({
+        with:{
+            menuItem:true,
+            order:true
+        }
+    })
 }
 
 export const fetchOne = async(id: number): Promise<OrderMenuSelect | undefined>=>{
     return await db.query.orderMenuItemTable.findFirst({
-        where:eq(orderMenuItemTable.id,id)
+        where:eq(orderMenuItemTable.id,id),
+        with:{
+            menuItem:true,
+            order:true
+        }
     })
 }
 

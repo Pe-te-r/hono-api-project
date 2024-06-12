@@ -3,7 +3,13 @@ import { eq } from "drizzle-orm";
 import { CityInsert, cityTable } from "../drizzle/schema";
 
 export const fetchingAllCity = async(): Promise<CityInsert[] | any >=>{
-    return await db.query.cityTable.findMany()
+    return await db.query.cityTable.findMany({
+        with:{
+            addresses:true,
+            state:true,
+            restaurants:true
+        }
+    })
 }
 
 export const fetchOneCity = async(id: number): Promise<CityInsert | undefined>=>{

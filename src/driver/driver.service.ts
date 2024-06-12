@@ -3,12 +3,21 @@ import { eq } from "drizzle-orm";
 import { DriverInsert, DriverSelect, driversTable } from "../drizzle/schema";
 
 export const fetchingAllDriver = async(): Promise<DriverInsert[] | null >=>{
-    return await db.query.driversTable.findMany()
+    return await db.query.driversTable.findMany({
+        with:{
+            orders:true,
+            user:true
+        }
+    })
 }
 
 export const fetchOneDriver = async(id: number): Promise<DriverSelect | undefined>=>{
     return await db.query.driversTable.findFirst({
-        where:eq(driversTable.id,id)
+        where:eq(driversTable.id,id),
+            with:{
+                orders:true,
+                user:true
+            }
     })
 }
 

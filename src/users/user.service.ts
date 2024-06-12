@@ -14,7 +14,15 @@ export const fetchingAllUsers = async(option?: FetchingAllUsersOptions): Promise
                 limit: limit
             })
         }
-        return await db.query.usersTable.findMany()
+        return await db.query.usersTable.findMany({
+            with:{
+                addresses:true,
+                orders:true,
+                restaurantOwners:true,
+                comments:true,
+                drivers:true
+            }
+        })
     }catch(error: any){
         return error?.message
     }

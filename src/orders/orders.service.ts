@@ -5,12 +5,27 @@ import { OrderInsert, OrderSelect, ordersTable } from "../drizzle/schema";
 let message= "order status"
 
 export const fetchingAll = async(): Promise<OrderSelect[] | null >=>{  
-    return await db.query.ordersTable.findMany()
+    return await db.query.ordersTable.findMany({
+        with:{
+            comments:true,
+            deliveryAddress:true,
+            driver:true,
+            orderMenuItems:true,
+            orderStatus:true,
+            restaurant:true,
+            user:true
+        }
+    })
 }
 
 export const fetchOne = async(id: number): Promise<OrderSelect | undefined>=>{
     return await db.query.ordersTable.findFirst({
-        where:eq(ordersTable.id,id)
+        where:eq(ordersTable.id,id),
+         with:{
+            comments:true,
+            deliveryAddress:true,
+            driver:true,
+         }
     })
 }
 

@@ -46,7 +46,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
   {
-    "email": "shakirah18@gmail.com",
+    "email": "phantom8526@duck.com",
     "password": "12345"
   }
 ###login
@@ -69,7 +69,7 @@ GET http://localhost:3000/state/listStates
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
 ### Get one state
 GET http://localhost:3000/state/oneState/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxOTUwMTV9.Te0SwgQAm0Lx-wmdBfkkIvsSqVb25PjhoGhq7XIFImE
 ### Delete one state
 DELETE http://localhost:3000/state/deleteState/1
 ### create one state

@@ -3,12 +3,23 @@ import { eq } from "drizzle-orm";
 import { MenuItemInsert, MenuItemSelect, menuItemsTable } from "../drizzle/schema";
 
 export const fetchingAllMenuItems = async(): Promise<MenuItemSelect[] | null >=>{
-    return await db.query.menuItemsTable.findMany()
+    return await db.query.menuItemsTable.findMany({
+        with:{
+            category:true,
+            orderMenuItems:true,
+            restaurant:true
+        }
+    })
 }
 
 export const fetchOneMenuItems = async(id: number): Promise<MenuItemSelect | undefined>=>{
     return await db.query.menuItemsTable.findFirst({
-        where:eq(menuItemsTable.id,id)
+        where:eq(menuItemsTable.id,id),
+            with:{
+                category:true,
+                orderMenuItems:true,
+                restaurant:true
+            }
     })
 }
 
