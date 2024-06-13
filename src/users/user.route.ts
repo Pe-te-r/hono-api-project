@@ -7,7 +7,7 @@ import { userSchema } from "../zvalidators";
 export const userRoute = new Hono()
 
 // getting all users
-userRoute.get('/users',allRoleAuth,listUsers)
+userRoute.get('/users',userRoleAuth,listUsers)
 // getting one user
 userRoute.get("/users/:id",allRoleAuth,getOneUser)
 

@@ -39,9 +39,25 @@ export const login=async(c: Context)=>{
 
 export const listUsers = async (c: Context) => {
   try {
-    const limitParam = c.req.query('limit');
-    const limit = limitParam ? parseInt(limitParam,10): undefined;
-    const users = await fetchingAllUsers(limit? {limit}: undefined);
+
+    const allowedParams = ['limit', 'detailed'];
+    
+    // Check for unexpected query parameters
+    // const unexpectedParams = Object.keys(query).filter(param => !allowedParams.includes(param));
+    // if (unexpectedParams.length > 0) {
+    //   return c.json({ error: `Unexpected query parameters: ${unexpectedParams.join(', ')}` }, 400);
+    // }
+
+    // info passed via api url
+    // const limitParam = c.req.query('limit');
+    // const limit = limitParam ? parseInt(limitParam,10): undefined;
+    // const detailedParam = c.req.query('details');
+    // const detailed = !!detailedParam;
+    const query= c.req.query()
+    const limit=Number(query['limit']);
+    const detailed=Boolean(query['detailed']);
+
+    const users = await fetchingAllUsers({ limit, detailed });
     if (users === null) return c.json({ msg: "no users found" });
     return c.json(users, 200);
   } catch (error: any) {
@@ -51,11 +67,16 @@ export const listUsers = async (c: Context) => {
 
 export const getOneUser = async (c: Context) => {
   try {
-    const id = c.req.param("id");
+    const id = c.req.param("id")
     const token = c.req.header("Authorization")
+    // info passed via the url for more detailed info
+    const detailedParam = c.req.query('details');
+    const detailed = !!detailedParam
+    // token verification
     const decoded=await verifyToken(token as string,process.env.SECRET_KEY as string)
     if(Number(decoded?.user_id) !== Number(id) || !decoded) return c.json({msg:"cannot get another user details"})
-    const user = await fetchOneUser(Number(id));
+
+    const user = await fetchOneUser(Number(id),{detailed});
     if(user==null) return c.json({"msg": "user not found"});
     return c.json(user, 200);
   } catch (error: any) {

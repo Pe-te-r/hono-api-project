@@ -2,34 +2,61 @@ import db from "../drizzle/db";
 import { eq, sql } from "drizzle-orm";
 import { UserSelect, userInsert, usersTable } from "../drizzle/schema";
 
-type FetchingAllUsersOptions = {
+// type FetchingAllUsersOptions = {
+//     limit?: number;
+//   };
+interface FetchingAllUsersParams {
     limit?: number;
-  };
+    detailed?: boolean;
+  }
+  
 
-export const fetchingAllUsers = async(option?: FetchingAllUsersOptions): Promise<UserSelect[] | null >=>{
+export const fetchingAllUsers = async(option?: FetchingAllUsersParams): Promise<UserSelect[] | null >=>{
     try{
+        const detailed = Boolean(option?.detailed)
         const limit = Number(option?.limit)
-        if(limit> 0){
-            return await db.query.usersTable.findMany({
-                limit: limit
-            })
-        }
-        return await db.query.usersTable.findMany({
-            with:{
-                addresses:true,
-                orders:true,
-                restaurantOwners:true,
-                comments:true,
-                drivers:true
+        console.log(detailed)
+
+        if(!detailed){
+            if(limit>0){
+                return await db.query.usersTable.findMany({limit: limit})
+            }else{
+                return await db.query.usersTable.findMany()
             }
-        })
+
+        }else{
+            if(limit>0){
+                return await db.query.usersTable.findMany({
+                    limit: limit,
+                    with:{
+                        addresses:true,
+                        orders:true,
+                        restaurantOwners:true,
+                        comments:true,
+                        drivers:true
+                    }
+                })
+            }else{
+                return await db.query.usersTable.findMany({
+                    with:{
+                        addresses:true,
+                        orders:true,
+                        restaurantOwners:true,
+                        comments:true,
+                        drivers:true
+                    }
+                })
+            }
+        }
     }catch(error: any){
         return error?.message
     }
 
 }
 
-export const fetchOneUser = async(id: number): Promise<UserSelect | undefined>=>{
+export const fetchOneUser = async(id: number,option?: FetchingAllUsersParams): Promise<UserSelect | undefined>=>{
+    const detailed = Boolean(option?.detailed)
+    if(!detailed) return await db.query.usersTable.findFirst()
     return await db.query.usersTable.findFirst({
         where:eq(usersTable.id,id),
         with:{
