@@ -6,7 +6,7 @@ import { CategoryInsert, CategorySelect, categoryTable } from "../drizzle/schema
 export const fetchingAllCategory = async(): Promise< CategorySelect[] | any >=>{
     return await db.query.categoryTable.findMany({
         with:{
-            menuItems:true
+            menuItems:{columns:{name:true,description:true,ingredients:true}}
         }
     })
 }
@@ -15,7 +15,7 @@ export const fetchOneCategoryRecord = async(id: number): Promise<CategorySelect 
     return await db.query.categoryTable.findFirst({
         where:eq(categoryTable.id,id),
         with:{
-            menuItems:true
+            menuItems:{columns:{name:true,description:true,ingredients:true}}
         }
     })
 }

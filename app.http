@@ -1,8 +1,7 @@
 #### users crud operations
 ###admins only
-GET http://localhost:3000/user/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjgwMzQ1fQ.PIJduxRtIMCkmPZ80GPHSeusMo97vpXlMLSn0kUXvbg
-
+GET http://localhost:3000/user/users?limit=1&detailed=true
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4Mjk1MjU0fQ.x4WUq6mN26rli4RRegQCp9LnV39upYVgEu-huBxzh5o
 ### Get one user
 ### users and admin (user cannot fetch another user details)
 GET http://localhost:3000/user/users/5
