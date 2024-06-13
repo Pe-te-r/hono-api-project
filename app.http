@@ -1,12 +1,12 @@
 #### users crud operations
 ###admins only
-GET http://localhost:3000/user/users?details=true
+GET http://localhost:3000/user/users
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjgwMzQ1fQ.PIJduxRtIMCkmPZ80GPHSeusMo97vpXlMLSn0kUXvbg
 
 ### Get one user
 ### users and admin (user cannot fetch another user details)
-GET http://localhost:3000/user/users/3?details=true
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4Mjc4MDMyfQ.i4xsgGf7UNGJ4j73vUaBrXCsk4uosH1bokfm_tZqjZo
+GET http://localhost:3000/user/users/5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgyOTE2OTJ9.3L1syaTBZ5TcHcMt6bJlMrn8cZlouzpHSIdP_IChH8Q
 
 ### Delete one user where admin can detele user or user delete their details  
 DELETE http://localhost:3000/user/users/2
@@ -269,6 +269,7 @@ Content-Type: application/json
 
 ### Get all comments
 GET http://localhost:3000/comment/listComments
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgyOTE2OTJ9.3L1syaTBZ5TcHcMt6bJlMrn8cZlouzpHSIdP_IChH8Q
 ### Get one comment
 GET http://localhost:3000/comment/getComment/3
 ### Delete one comment

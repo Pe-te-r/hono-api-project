@@ -60,16 +60,16 @@ export const fetchOne = async(id: number): Promise<OrderSelect | undefined>=>{
     })
 }
 
-export const deleteOne = async(id: number)=>{
+export const deleteOne = async(id: number): Promise<string>=>{
     await db.delete(ordersTable).where(eq(ordersTable.id,id))
     return  `${message} deleted`
 }
 
-export const insert = async (data: OrderInsert) => {
+export const insert = async (data: OrderInsert): Promise<string> => {
     await db.insert(ordersTable).values(data)
     return `${message} created successfully`;
 }
-export const update = async (id: number, data: OrderInsert) => {
+export const update = async (id: number, data: OrderInsert): Promise<string | null> => {
     await db.update(ordersTable).set(data).where(eq(ordersTable.id, id))
     return `${message} updated successfully`;
 }

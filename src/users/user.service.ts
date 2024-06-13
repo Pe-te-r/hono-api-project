@@ -11,24 +11,20 @@ interface FetchingAllUsersParams {
   }
   
 
-export const fetchingAllUsers = async(option?: FetchingAllUsersParams): Promise<UserSelect[] | null >=>{
-
-    try{
+export const fetchingAllUsers = async(option?: FetchingAllUsersParams)=>{
+    try {
         const detailed = Boolean(option?.detailed)
         const limit = Number(option?.limit)
-        console.log(detailed)
-
-        if(!detailed){
+        if (!detailed){
             if(limit>0){
                 return await db.query.usersTable.findMany({limit: limit})
             }else{
                 return await db.query.usersTable.findMany()
             }
-
         }else{
             if(limit>0){
                 return await db.query.usersTable.findMany({
-                    limit: limit,
+                    limit:limit,
                     with:{
                         addresses:{
                             columns:{
@@ -50,13 +46,12 @@ export const fetchingAllUsers = async(option?: FetchingAllUsersParams): Promise<
                         restaurantOwners:{
                             columns:{
                                 restaurant_id:true
-                            }
+                                }
                         },
                         comments:{
-            
                             columns:{
                                 comment_text:true
-                            },
+                            }
                         },
                         drivers:{
                             columns:{
@@ -64,17 +59,18 @@ export const fetchingAllUsers = async(option?: FetchingAllUsersParams): Promise<
                                 delivering:true
                             }
                         }
+
                     }
                 })
             }else{
-                
-            }} 
-    }catch(error: any){
-        return error?.message;
+                return await db.query.usersTable.findMany()
+            }
+        }
+    } catch (error: any) {
+        return error.message
     }
 
 
-// closing
 }
 
 

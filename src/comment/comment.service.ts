@@ -6,7 +6,9 @@ export const fetchingAllComment = async(): Promise<CommentSelect[] | null >=>{
     return await db.query.commentsTable.findMany({
             with:{
                 order:true,
-                user:true
+                user:{
+                    columns:{email:true,name:true}
+                }
             }
     })
 }

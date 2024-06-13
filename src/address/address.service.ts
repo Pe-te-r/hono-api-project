@@ -16,7 +16,9 @@ export const fetchOneAddress = async(id: number): Promise<AddressSelect | undefi
     return await db.query.addressTable.findFirst({
         where:eq(addressTable.id,id),
         with:{
-            city:true,
+            city:{
+                columns:{}
+            },
             orders:true,
             user:true
         }
