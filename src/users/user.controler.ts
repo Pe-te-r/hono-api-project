@@ -41,19 +41,13 @@ export const listUsers = async (c: Context) => {
   try {
 
     const allowedParams = ['limit', 'detailed'];
-    
-    // Check for unexpected query parameters
-    // const unexpectedParams = Object.keys(query).filter(param => !allowedParams.includes(param));
-    // if (unexpectedParams.length > 0) {
-    //   return c.json({ error: `Unexpected query parameters: ${unexpectedParams.join(', ')}` }, 400);
-    // }
-
-    // info passed via api url
-    // const limitParam = c.req.query('limit');
-    // const limit = limitParam ? parseInt(limitParam,10): undefined;
-    // const detailedParam = c.req.query('details');
-    // const detailed = !!detailedParam;
     const query= c.req.query()
+    
+    const unexpectedParams = Object.keys(query).filter(param => !allowedParams.includes(param));
+    if (unexpectedParams.length > 0) {
+      return c.json({ error: `Unexpected query parameters: ${unexpectedParams.join(', ')}` }, 400);
+    }
+
     const limit=Number(query['limit']);
     const detailed=Boolean(query['detailed']);
 

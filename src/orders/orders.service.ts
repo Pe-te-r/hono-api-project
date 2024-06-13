@@ -7,13 +7,44 @@ let message= "order status"
 export const fetchingAll = async(): Promise<OrderSelect[] | null >=>{  
     return await db.query.ordersTable.findMany({
         with:{
-            comments:true,
-            deliveryAddress:true,
-            driver:true,
-            orderMenuItems:true,
-            orderStatus:true,
-            restaurant:true,
-            user:true
+            comments:{
+                columns:{
+                    comment_text:true
+                }
+            },
+            deliveryAddress:{
+                columns:{
+                    street_address_1:true
+                }
+            },
+            driver:{
+                columns:{
+                    delivering:true,        
+                }
+            },
+            orderMenuItems:{
+                columns:{
+                    order_id:true,
+                    menu_item_id:true                    
+                }
+            },
+            orderStatus:{
+                columns:{
+                    status_id:true
+                }
+            },
+            restaurant:{
+                columns:{
+                    street_address:true                    
+                }
+            },
+            user:{
+                columns:{
+                    name:true,
+                    contact_phone:true,
+                    email:true
+                }
+            }
         }
     })
 }

@@ -1,15 +1,16 @@
 #### users crud operations
-GET http://localhost:3000/user/users?limit=1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4Mjc4MDMyfQ.i4xsgGf7UNGJ4j73vUaBrXCsk4uosH1bokfm_tZqjZo
-# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjAzNjU4fQ.F11OXjGs3x7rjXWlKDpxUppwWz4tbOarIYiPJc3tuXs
-###
+###admins only
+GET http://localhost:3000/user/users?details=true
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjgwMzQ1fQ.PIJduxRtIMCkmPZ80GPHSeusMo97vpXlMLSn0kUXvbg
+
+### Get one user
+### users and admin (user cannot fetch another user details)
 GET http://localhost:3000/user/users/3?details=true
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4Mjc4MDMyfQ.i4xsgGf7UNGJ4j73vUaBrXCsk4uosH1bokfm_tZqjZo
-### Get one user
-GET http://localhost:3000/user/users/1
-### Delete one user
+
+### Delete one user where admin can detele user or user delete their details  
 DELETE http://localhost:3000/user/users/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
+Authorization: 
 ### create one user
 POST http://localhost:3000/user/users
 Content-Type: application/json
@@ -75,11 +76,11 @@ Content-Type: application/json
 ### state crude operations
 
 ### Get all states
-GET http://localhost:3000/state/listStates
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MTg1Nzg0fQ.cwa77eiEPr3L7SpwkznxRx4ovz138QWm3Djs469fdcM
+GET http://localhost:3000/state/listStates?limit=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjgwMzQ1fQ.PIJduxRtIMCkmPZ80GPHSeusMo97vpXlMLSn0kUXvbg
 ### Get one state
-GET http://localhost:3000/state/oneState/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTgxOTUwMTV9.Te0SwgQAm0Lx-wmdBfkkIvsSqVb25PjhoGhq7XIFImE
+GET http://localhost:3000/state/oneState/3?detailed=true
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjgwMzQ1fQ.PIJduxRtIMCkmPZ80GPHSeusMo97vpXlMLSn0kUXvbg
 ### Delete one state
 DELETE http://localhost:3000/state/deleteState/1
 ### create one state

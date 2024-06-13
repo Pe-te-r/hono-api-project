@@ -12,6 +12,7 @@ interface FetchingAllUsersParams {
   
 
 export const fetchingAllUsers = async(option?: FetchingAllUsersParams): Promise<UserSelect[] | null >=>{
+
     try{
         const detailed = Boolean(option?.detailed)
         const limit = Number(option?.limit)
@@ -29,30 +30,53 @@ export const fetchingAllUsers = async(option?: FetchingAllUsersParams): Promise<
                 return await db.query.usersTable.findMany({
                     limit: limit,
                     with:{
-                        addresses:true,
-                        orders:true,
-                        restaurantOwners:true,
-                        comments:true,
-                        drivers:true
+                        addresses:{
+                            columns:{
+                                delivery_instructions:true,
+                                street_address_1:true,
+                                street_address_2:true,
+                                city_id:true
+                            }
+                        },
+                        orders:{
+                            columns:{
+                                actual_delivery_time:true,
+                                price:true,
+                                discount:true,
+                                final_price:true,
+                                driver_id:true
+                            }
+                        },
+                        restaurantOwners:{
+                            columns:{
+                                restaurant_id:true
+                            }
+                        },
+                        comments:{
+            
+                            columns:{
+                                comment_text:true
+                            },
+                        },
+                        drivers:{
+                            columns:{
+                                online:true,
+                                delivering:true
+                            }
+                        }
                     }
                 })
             }else{
-                return await db.query.usersTable.findMany({
-                    with:{
-                        addresses:true,
-                        orders:true,
-                        restaurantOwners:true,
-                        comments:true,
-                        drivers:true
-                    }
-                })
-            }
-        }
+                
+            }} 
     }catch(error: any){
-        return error?.message
+        return error?.message;
     }
 
+
+// closing
 }
+
 
 export const fetchOneUser = async(id: number,option?: FetchingAllUsersParams): Promise<UserSelect | undefined>=>{
     const detailed = Boolean(option?.detailed)
