@@ -32,6 +32,9 @@ importers:
       hono:
         specifier: ^4.4.2
         version: 4.4.5
+      hono-project-api-2:
+        specifier: 'link:'
+        version: 'link:'
       pg:
         specifier: ^8.12.0
         version: 8.12.0
