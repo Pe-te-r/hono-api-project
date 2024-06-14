@@ -36,7 +36,7 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
-const port = 8080
+const port = 8000
 console.log(`Server is running on port ${port}`)
 try{
 serve({
