@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import {deleteOneUser,createUser, getOneUser, listUsers, updateUserData,login } from "./user.controler";
-import { userRoleAuth,adminRoleAuth, allRoleAuth } from "../middleAuth/middleAuth.users";
+import {  allRoleAuth } from "../middleAuth/middleAuth.users";
 import { zValidator } from "@hono/zod-validator";
 import { userSchema } from "../zvalidators";
 
