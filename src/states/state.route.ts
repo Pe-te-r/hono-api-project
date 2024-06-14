@@ -17,4 +17,4 @@ stateRoute.delete("/deleteState/:id",adminRoleAuth,deleteOneState)
 stateRoute.put("/updateState/:id",adminRoleAuth,updateState)
 
 // create state
-stateRoute.post("/createState",createState)
+stateRoute.post("/createState",adminRoleAuth,createState)

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { createData, deleteOneData, getOne, listAll, updateData } from "./orders.controler";
-import { adminRoleAuth, allRoleAuth } from "../middleAuth/middleAuth.users";
+import { adminRoleAuth, allRoleAuth, userRoleAuth } from "../middleAuth/middleAuth.users";
 
 
 export const ordersRoute = new Hono()
@@ -11,10 +11,10 @@ ordersRoute.get('/list',adminRoleAuth,listAll)
 ordersRoute.get("/get/:name",allRoleAuth,getOne)
 
 // deleting a user
-ordersRoute.delete("/delete/:id",deleteOneData)
+ordersRoute.delete("/delete/:id",adminRoleAuth,deleteOneData)
 
 // updating a user
-ordersRoute.put("/update/:id",updateData)
+ordersRoute.put("/update/:id",adminRoleAuth,updateData)
 
 // creating a new user
-ordersRoute.post("/create",createData)
+ordersRoute.post("/create",userRoleAuth,createData)
