@@ -48,7 +48,7 @@ app.get('/', (c) => {
   }
 });
 
-const port = 8080 || 8000
+const port = Number(process.env.PORT) || 8000;
 console.log(`Server is running on port ${port}`)
 try{
 serve({
