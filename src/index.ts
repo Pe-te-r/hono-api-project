@@ -61,7 +61,7 @@ app.get('/', (c) => {
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 8px;
     }
-    h1 {
+    h1 { 
       color: #007bff;
       margin-bottom: 1rem;
     }
@@ -83,9 +83,9 @@ app.get('/', (c) => {
 <body>
   <div class="container">
     <h1>Welcome to My Restaurant Documentation Page</h1>
-    <p>Hi, I'm [Your Name].</p>
+    <p>Hi, I'm Peter.</p>
     <p class="coming-soon">We are working on writing a better documentation which is coming soon. Please be patient and sorry for the inconvenience caused.</p>
-    <p class="signature">- [Your Name]</p>
+    <p class="signature">- Phantom</p>
   </div>
 </body>
 </html>
