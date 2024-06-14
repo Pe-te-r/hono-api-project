@@ -49,7 +49,7 @@ app.get('/', (c) => {
 });
 
 const port = Number(process.env.PORT);
-console.log(`Server is running on port ${port}`)
+console.log(`Server is running on port ${port} well configured`)
 try{
 serve({
   fetch: app.fetch,
