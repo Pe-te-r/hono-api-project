@@ -1,13 +1,13 @@
 import { Hono } from "hono";
 import { createRestaurant, deleteOneRestaurant, getOneRestaurant, listRestaurants, updateRestaurantData } from "./restaurant.controller";
-import { adminRoleAuth, allMiddleware } from "../middleAuth/middleAuth.users";
+import { adminRoleAuth, allMiddleware, allRoleAuth } from "../middleAuth/middleAuth.users";
 
 export const RouteRestaurant= new Hono()
 
 // getting all users
-RouteRestaurant.get('/listRestaurants',allMiddleware,listRestaurants)
+RouteRestaurant.get('/listRestaurants',allRoleAuth,listRestaurants)
 // getting one user
-RouteRestaurant.get("/getRestaurant/:id",allMiddleware,getOneRestaurant)
+RouteRestaurant.get("/getRestaurant/:id",allRoleAuth,getOneRestaurant)
 
 // deleting a user
 RouteRestaurant.delete("/deleteRestaurant/:id",adminRoleAuth,deleteOneRestaurant)

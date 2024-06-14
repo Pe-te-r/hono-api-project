@@ -14,7 +14,7 @@ restaurantOwnersRoute.get("/get/:name",allRoleAuth,getOne)
 restaurantOwnersRoute.delete("/delete/:id",adminRoleAuth,deleteOneData)
 
 // updating a owner
-restaurantOwnersRoute.put("/update/:id",updateData)
+restaurantOwnersRoute.put("/update/:id",adminRoleAuth,updateData)
 
 // creating a new owner
-restaurantOwnersRoute.post("/create",adminRoleAuth,createData)
+restaurantOwnersRoute.post("/create",adminRoleAuth,adminRoleAuth,createData)

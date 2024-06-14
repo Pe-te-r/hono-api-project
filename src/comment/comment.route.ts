@@ -1,13 +1,13 @@
 import { Hono } from "hono";
 import { createComment, deleteOneComment, getOneComment, listComments, updateCommentData } from "./comment.controler";
-import { allMiddleware, userRoleAuth } from "../middleAuth/middleAuth.users";
+import { allRoleAuth, userRoleAuth } from "../middleAuth/middleAuth.users";
 
 export const commentRoute = new Hono()
 
 // getting all comments
-commentRoute.get('/listComments',allMiddleware,listComments)
+commentRoute.get('/listComments',allRoleAuth,listComments)
 // getting one comment
-commentRoute.get("/getComment/:name",userRoleAuth,getOneComment)
+commentRoute.get("/getComment/:name",allRoleAuth,getOneComment)
 
 // deleting a comment
 commentRoute.delete("/deleteComment/:id",userRoleAuth,deleteOneComment)
@@ -16,4 +16,4 @@ commentRoute.delete("/deleteComment/:id",userRoleAuth,deleteOneComment)
 commentRoute.put("/updateComment/:id",userRoleAuth,updateCommentData)
 
 // creating a new comment
-commentRoute.post("/createComment",createComment)
+commentRoute.post("/createComment",userRoleAuth,createComment)

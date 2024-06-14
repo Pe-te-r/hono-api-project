@@ -1,14 +1,14 @@
 import { Hono } from "hono";
 import { createState, deleteOneState, getAllStates, getOneState, updateState } from "./state.controller";
-import { adminRoleAuth, allMiddleware, userRoleAuth } from "../middleAuth/middleAuth.users";
+import { adminRoleAuth, allRoleAuth } from "../middleAuth/middleAuth.users";
 
 export const stateRoute=new Hono()
 
 // get all states
-stateRoute.get("/listStates",allMiddleware,getAllStates)
+stateRoute.get("/listStates",allRoleAuth,getAllStates)
 
 // get one state
-stateRoute.get("/oneState/:id",allMiddleware,getOneState)
+stateRoute.get("/oneState/:id",allRoleAuth,getOneState)
 
 // delete one state
 stateRoute.delete("/deleteState/:id",adminRoleAuth,deleteOneState)

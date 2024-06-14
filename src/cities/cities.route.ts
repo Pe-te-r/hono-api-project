@@ -1,18 +1,19 @@
 import { Hono } from "hono";
 import { createCity, deleteOneCity, getOneCity, listCities, updateCityTable } from "./cities.controller";
+import { adminRoleAuth, allRoleAuth } from "../middleAuth/middleAuth.users";
 
 export const cityRoute= new Hono()
 
 // getting all users
-cityRoute.get('/listCities',listCities)
+cityRoute.get('/listCities',allRoleAuth,listCities)
 // getting one user
-cityRoute.get("/getCity/:id",getOneCity)
+cityRoute.get("/getCity/:id",allRoleAuth,getOneCity)
 
 // deleting a user
-cityRoute.delete("/deleteCity/:id",deleteOneCity)
+cityRoute.delete("/deleteCity/:id",adminRoleAuth,deleteOneCity)
 
 // updating a user
-cityRoute.put("/updateCity/:id",updateCityTable)
+cityRoute.put("/updateCity/:id",adminRoleAuth,updateCityTable)
 
 // creating a new user
-cityRoute.post("/createCity",createCity)
+cityRoute.post("/createCity",adminRoleAuth,createCity)
