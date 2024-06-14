@@ -92,7 +92,7 @@ app.get('/', (c) => {
     `)
 })
 
-const port = 8000
+const port = 8080
 console.log(`Server is running on port ${port}`)
 try{
 serve({
