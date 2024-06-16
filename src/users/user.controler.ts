@@ -4,7 +4,7 @@ import * as bcrypt from "bcrypt"
 import {  sign} from "hono/jwt"
 import "dotenv/config";
 import { verifyToken } from "../middleAuth/middleAuth.users";
-import { and } from "drizzle-orm";
+import {sendMail} from "../mail/mail_send";
 
 
 
@@ -13,7 +13,7 @@ export const login=async(c: Context)=>{
     const user =await c.req.json();
 
     const user_exit = await loginService(user)
-    console.log(user_exit);
+    // console.log(user_exit);
     if (user_exit===undefined || user_exit=== null) return c.json({"error":"does not exist"})
     const userMatch=await bcrypt.compare(user.password, user_exit.password as string)
     if(! userMatch ) return c.json({"error":"wrong password"})
@@ -50,7 +50,6 @@ export const listUsers = async (c: Context) => {
 
     const limit=Number(query['limit']);
     const detailed=Boolean(query['detailed']);
-
     const users = await fetchingAllUsers({ limit, detailed });
     if (users === null) return c.json({ msg: "no users found" });
     return c.json(users, 200);
@@ -106,15 +105,21 @@ export const createUser = async (c: Context) => {
   try {
     const user = await c.req.json();
     const user_exit=await loginService(user)
-    console.log(user)
-    console.log(user_exit)
+    await sendMail("register",user.email,"welcome Message","Welcome to our restaurant service. Thanks for registering with us. Please visit our website for more information",user.name);
     if(user_exit === undefined || user_exit === null){
       const password= user.password
       const hashed_password = await bcrypt.hash(password,10);
       user.password = hashed_password
       const result = await insertUser(user);
+      try {
+        console.log(user.email)
+        console.log("sent mail")
+      } catch (error: any) {
+        return c.json({message: error?.message});
+      }
       return c.json({ msg: result}, 200);
     }
+    return c.json({ "msg": "user already exist" }, 200);
 
   } catch (error: any) {
 

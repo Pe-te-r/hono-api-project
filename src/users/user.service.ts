@@ -96,7 +96,7 @@ export const deleteUser = async(id: number)=>{
 
 export const insertUser = async (user: userInsert) => {
     try {
-        await db.insert(usersTable).values(user)
+        // await db.insert(usersTable).values(user)
         return "User created successfully";
     } catch (error: any) {
         return error?.message        

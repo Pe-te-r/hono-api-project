@@ -1,7 +1,7 @@
 #### users crud operations
 ###admins only
-GET http://localhost:3000/user/users?limit=1&detailed=true
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4Mjk1MjU0fQ.x4WUq6mN26rli4RRegQCp9LnV39upYVgEu-huBxzh5o
+GET http://localhost:8000/user/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTg0OTg1MTF9.sBUb4XVF2t3exDlaMjfm0wm5gW4JLcissvOkJjaojN8
 ### Get one user
 ### users and admin (user cannot fetch another user details)
 GET http://localhost:3000/user/users/5
@@ -11,14 +11,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoi
 DELETE http://localhost:3000/user/users/2
 Authorization: 
 ### create one user
-POST http://localhost:3000/user/users
+POST http://localhost:8000/user/users
 Content-Type: application/json
 
   {
-    "name": "mburu",
+    "name": "peter Wahu",
     "contact_phone": "0748200233",
     "phone_verified":true,
-    "email": "mburupeter8526@gmail.com",
+    "email": "petermburu8526@gmail.com",
     "email_verified": true,
     "confirmation_code":"123",
     "password": "12345",
@@ -31,10 +31,10 @@ PUT   http://localhost:3000/user/users/4
 Content-Type: application/json
 
   {
-    "name": "mburu",
+    "name": "peter Wahu",
     "contact_phone": "0748200233",
     "phone_verified":true,
-    "email": "mburupeter8526@gmail.com",
+    "email": "peterwahu0@gmail.com",
     "email_verified": true,
     "confirmation_code":"123",
     "password": "12345",
@@ -42,7 +42,7 @@ Content-Type: application/json
     "created_at": "2016-12-05"
   }
 ###login
-POST http://localhost:3000/user/login
+POST http://localhost:8000/user/login
 Content-Type: application/json
 
   {
@@ -75,8 +75,8 @@ Content-Type: application/json
 ### state crude operations
 
 ### Get all states
-GET http://localhost:3000/state/listStates?limit=2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjgwMzQ1fQ.PIJduxRtIMCkmPZ80GPHSeusMo97vpXlMLSn0kUXvbg
+GET http://localhost:8000/state/listStates?limit=2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJyb2xlIjoidXNlciIsImVtYWlsIjoicGhhbnRvbTg1MjZAZHVjay5jb20iLCJleHAiOjE3MTg0OTg1MTF9.sBUb4XVF2t3exDlaMjfm0wm5gW4JLcissvOkJjaojN8
 ### Get one state
 GET http://localhost:3000/state/oneState/3?detailed=true
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6InNoYWtpcmFoMThAZ21haWwuY29tIiwiZXhwIjoxNzE4MjgwMzQ1fQ.PIJduxRtIMCkmPZ80GPHSeusMo97vpXlMLSn0kUXvbg
